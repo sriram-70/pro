@@ -9,7 +9,7 @@ export default function About() {
                     KERNEL_PANIC?
                 </h2>
 
-                <div className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl">
+                <div className="backdrop-blur-md bg-white/[0.02] border border-white/10 p-8 rounded-2xl">
                     <p className="text-xl lg:text-2xl font-display font-light leading-relaxed text-white/90">
                         No. Just controlled chaos. I am a <span className="text-cyan font-semibold">Vibe Coder</span> who
                         translates <span className="italic">'what if'</span> into <span className="italic">'here it is'</span>.

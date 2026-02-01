@@ -22,7 +22,7 @@ export default function Services() {
     return (
         <section className="min-h-screen flex items-center px-8 lg:px-16">
             {/* List anchored left */}
-            <div className="w-full lg:w-2/3">
+            <div className="w-full lg:w-1/2">
                 <h2 className="text-[8vw] lg:text-[6vw] font-display font-black mb-12 tracking-tight">
                     AVAILABLE_FUNCTIONS()
                 </h2>
@@ -32,7 +32,7 @@ export default function Services() {
                     {services.map((service) => (
                         <div
                             key={service.id}
-                            className="backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
+                            className="backdrop-blur-md bg-white/[0.02] border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 group"
                         >
                             <div className="flex items-start gap-6">
                                 <span className="font-mono text-cyan text-2xl font-bold shrink-0">
@@ -53,7 +53,7 @@ export default function Services() {
             </div>
 
             {/* Visual whitespace on right */}
-            <div className="hidden lg:block w-1/3" />
+            <div className="hidden lg:block w-1/2" />
         </section>
     );
 }

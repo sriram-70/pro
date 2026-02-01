@@ -8,20 +8,26 @@ export default function Cursor() {
     const cursorY = useMotionValue(-100);
     const [hovered, setHovered] = useState(false);
 
-    // Spring physics for "Liquid" heavy feel
+    // Smooth spring physics for "liquid" feel
     const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
     const springX = useSpring(cursorX, springConfig);
     const springY = useSpring(cursorY, springConfig);
 
     useEffect(() => {
         const moveCursor = (e: MouseEvent) => {
-            cursorX.set(e.clientX - 16); // Center the 32px cursor
-            cursorY.set(e.clientY - 16);
+            cursorX.set(e.clientX - 8); // Center the 16px cursor (w-4)
+            cursorY.set(e.clientY - 8);
         };
 
         const handleMouseOver = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
-            if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
+            // Check for interactive elements
+            if (
+                target.tagName === 'A' ||
+                target.tagName === 'BUTTON' ||
+                target.closest('a') ||
+                target.closest('button')
+            ) {
                 setHovered(true);
             } else {
                 setHovered(false);
@@ -39,15 +45,14 @@ export default function Cursor() {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference"
+            className="fixed top-0 left-0 w-4 h-4 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference shadow-[0_0_10px_rgba(255,255,255,0.5)]"
             style={{
                 x: springX,
                 y: springY,
-                border: '1px solid white',
             }}
             animate={{
-                scale: hovered ? 2.5 : 1,
-                backgroundColor: hovered ? 'white' : 'transparent',
+                scale: hovered ? 3.0 : 1,
+                opacity: hovered ? 0.5 : 1,
             }}
             transition={{
                 type: 'spring',

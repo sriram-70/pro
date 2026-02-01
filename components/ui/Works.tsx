@@ -22,10 +22,10 @@ export default function Works() {
     return (
         <section className="min-h-screen flex items-center justify-end px-8 lg:px-16">
             {/* Visual whitespace on left */}
-            <div className="hidden lg:block w-1/3" />
+            <div className="hidden lg:block w-1/2" />
 
-            {/* Bento Grid anchored right, w-2/3 */}
-            <div className="w-full lg:w-2/3">
+            {/* Bento Grid anchored right, w-1/2 */}
+            <div className="w-full lg:w-1/2">
                 <h2 className="text-[8vw] lg:text-[6vw] font-display font-black mb-12 tracking-tight">
                     RUNTIME_MODULES
                 </h2>
@@ -35,7 +35,7 @@ export default function Works() {
                     {projects.map((project, index) => (
                         <div
                             key={index}
-                            className={`backdrop-blur-md bg-white/5 border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 ${index === 0 ? 'md:col-span-2' : ''
+                            className={`backdrop-blur-md bg-white/[0.02] border border-white/10 p-8 rounded-2xl hover:bg-white/10 transition-all duration-300 ${index === 0 ? 'md:col-span-2' : ''
                                 }`}
                         >
                             <h3 className="text-3xl font-display font-bold mb-3">

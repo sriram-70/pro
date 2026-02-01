@@ -15,64 +15,65 @@ if (typeof window !== 'undefined') {
 
 export default function Scene() {
     const sunGroupRef = useRef<THREE.Group>(null);
-
     const bgRef = useRef<THREE.Color>(null);
 
     useEffect(() => {
         if (!sunGroupRef.current) return;
 
-        // Create GSAP timeline linked to scroll
+        // MASTER TIMELINE: Sunrise -> Sunset
         const tl = gsap.timeline({
             scrollTrigger: {
-                trigger: 'body',
+                trigger: 'main',
                 start: 'top top',
                 end: 'bottom bottom',
-                scrub: 1.5, // Liquid physics feel
+                scrub: 2.5, // "Water Flow" physics (Heavy Damping)
                 invalidateOnRefresh: true,
             },
         });
 
-        // --- S-CURVE ORBITAL PATH ---
-        // Phase 1: Hero -> About (Morning Rise)
-        tl.to(sunGroupRef.current.position, {
-            x: 5, y: 0, z: 0,
-            duration: 1, ease: 'power2.inOut'
-        }, 0)
+        // --- PHASE 1: THE AWAKENING (Hero -> About) ---
+        // Vibe: Darkness Killing Light -> First Ray
+        // Move: Center -> Right (Orbiting)
+        // Rotate: 0 -> -2 (Rolling Forward)
+        // Color: Deep Blue (#0F172A) -> Morning Haze (#334155)
 
-            // Phase 2: About -> Works (Void Black Swing)
-            .to(sunGroupRef.current.position, {
-                x: -5, y: 0, z: 2,
-                duration: 1, ease: 'power2.inOut'
-            }, 1)
+        tl.to(sunGroupRef.current.position, { x: 7, y: 0, z: 0, duration: 1, ease: 'power2.inOut' }, 0)
+            .to(sunGroupRef.current.rotation, { x: -2, duration: 1, ease: 'power2.inOut' }, 0)
+            .to(bgRef.current!, { r: 0.2, g: 0.25, b: 0.33 }, 0); // #334155 (Slate-700) roughly
 
-            // Phase 3: Works -> Services (Golden Hour)
-            .to(sunGroupRef.current.position, {
-                x: 5, y: -1, z: 0,
-                duration: 1, ease: 'power2.inOut'
-            }, 2)
 
-            // Phase 4: Services -> Contact (Sunset Red)
-            .to(sunGroupRef.current.position, {
-                x: 0, y: -2, z: 0,
-                duration: 1, ease: 'power2.inOut'
-            }, 3);
+        // --- PHASE 2: HIGH NOON (About -> Works) ---
+        // Vibe: Peak Intensity, Contrast
+        // Move: Right -> Left (Cross Over)
+        // Rotate: -2 -> -4
+        // Color: Morning Haze -> Void Black (#000000) for contrast
 
-        // --- ATMOSPHERE SHIFT ---
-        if (bgRef.current) {
-            // Initial: Void Black (#000000)
+        tl.to(sunGroupRef.current.position, { x: -7, y: 0, z: 2, duration: 1, ease: 'power2.inOut' }, 1)
+            .to(sunGroupRef.current.rotation, { x: -4, duration: 1, ease: 'power2.inOut' }, 1)
+            .to(bgRef.current!, { r: 0.0, g: 0.0, b: 0.0 }, 1);
 
-            // Phase 1: Deep Morning Blue
-            tl.to(bgRef.current, { r: 0.1, g: 0.1, b: 0.25 }, 0)
 
-                // Phase 2: Void Black
-                .to(bgRef.current, { r: 0.0, g: 0.0, b: 0.0 }, 1)
+        // --- PHASE 3: AFTERNOON GLOW (Works -> Services) ---
+        // Vibe: Warmth returning
+        // Move: Left -> Right (Return)
+        // Rotate: -4 -> -6
+        // Color: Void -> Deep Purple/Orange hint (#2E1065)
 
-                // Phase 3: Golden Hour
-                .to(bgRef.current, { r: 0.2, g: 0.1, b: 0.05 }, 2)
+        tl.to(sunGroupRef.current.position, { x: 7, y: 0, z: 0, duration: 1, ease: 'power2.inOut' }, 2)
+            .to(sunGroupRef.current.rotation, { x: -6, duration: 1, ease: 'power2.inOut' }, 2)
+            .to(bgRef.current!, { r: 0.18, g: 0.06, b: 0.4 }, 2); // #2E1065 approx
 
-                // Phase 4: Sunset Red
-                .to(bgRef.current, { r: 0.15, g: 0.0, b: 0.0 }, 3);
-        }
+
+        // --- PHASE 4: GOLDEN HOUR FINALE (Services -> Contact) ---
+        // Vibe: The Setting Sun
+        // Move: Right -> Center Down (Setting)
+        // Rotate: -6 -> -8
+        // Color: Purple -> Fiery Red (#7F1D1D)
+
+        tl.to(sunGroupRef.current.position, { x: 0, y: -2, z: 0, duration: 1, ease: 'power2.inOut' }, 3)
+            .to(sunGroupRef.current.rotation, { x: -8, duration: 1, ease: 'power2.inOut' }, 3)
+            .to(bgRef.current!, { r: 0.5, g: 0.11, b: 0.11 }, 3); // #7F1D1D
+
 
         return () => {
             ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -81,17 +82,15 @@ export default function Scene() {
 
     return (
         <div className="fixed inset-0 -z-10">
-            <Canvas camera={{ position: [0, 0, 12], fov: 50 }}>
-                {/* Dynamic Atmosphere Background */}
-                <color ref={bgRef as any} attach="background" args={['#000000']} />
+            <Canvas camera={{ position: [0, 0, 14], fov: 45 }}>
+                {/* FOV reduced for cinematic flatness */}
 
-                {/* Ambient lighting for subtle fill */}
-                <ambientLight intensity={0.2} />
+                {/* Dynamic Atmosphere Background - Start: Void Blue */}
+                <color ref={bgRef as any} attach="background" args={['#0F172A']} />
 
-                {/* Star field background */}
+                <ambientLight intensity={0.5} />
                 <StarField />
 
-                {/* The Sun with orbital animation */}
                 <group ref={sunGroupRef}>
                     <TheSun />
                 </group>
