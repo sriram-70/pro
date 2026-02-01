@@ -35,23 +35,23 @@ export default function Scene() {
         // --- S-CURVE ORBITAL PATH ---
         // Phase 1: Hero -> About (Morning Rise)
         tl.to(sunGroupRef.current.position, {
-            x: 4, y: 1, z: 0,
+            x: 5, y: 0, z: 0,
             duration: 1, ease: 'power2.inOut'
         }, 0)
 
-            // Phase 2: About -> Works (Deep Space Swing)
+            // Phase 2: About -> Works (Void Black Swing)
             .to(sunGroupRef.current.position, {
-                x: -4, y: 0, z: 2,
+                x: -5, y: 0, z: 2,
                 duration: 1, ease: 'power2.inOut'
             }, 1)
 
-            // Phase 3: Works -> Services (Re-entry)
+            // Phase 3: Works -> Services (Golden Hour)
             .to(sunGroupRef.current.position, {
-                x: 4, y: -1, z: 0,
+                x: 5, y: -1, z: 0,
                 duration: 1, ease: 'power2.inOut'
             }, 2)
 
-            // Phase 4: Services -> Contact (Sunset Descent)
+            // Phase 4: Services -> Contact (Sunset Red)
             .to(sunGroupRef.current.position, {
                 x: 0, y: -2, z: 0,
                 duration: 1, ease: 'power2.inOut'
@@ -61,14 +61,17 @@ export default function Scene() {
         if (bgRef.current) {
             // Initial: Void Black (#000000)
 
-            // Phase 1: Morning Blue
-            tl.to(bgRef.current, { r: 0.1, g: 0.1, b: 0.2 }, 0)
+            // Phase 1: Deep Morning Blue
+            tl.to(bgRef.current, { r: 0.1, g: 0.1, b: 0.25 }, 0)
 
-                // Phase 2: Deep Space Black
+                // Phase 2: Void Black
                 .to(bgRef.current, { r: 0.0, g: 0.0, b: 0.0 }, 1)
 
-                // Phase 3: Sunset Red
-                .to(bgRef.current, { r: 0.2, g: 0.05, b: 0.05 }, 3);
+                // Phase 3: Golden Hour
+                .to(bgRef.current, { r: 0.2, g: 0.1, b: 0.05 }, 2)
+
+                // Phase 4: Sunset Red
+                .to(bgRef.current, { r: 0.15, g: 0.0, b: 0.0 }, 3);
         }
 
         return () => {

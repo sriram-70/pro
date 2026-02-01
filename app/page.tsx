@@ -24,11 +24,30 @@ export default function Home() {
 
             {/* Scrollable HTML Content */}
             <main className="relative w-full z-10">
-                <div className="min-h-[150vh]"><Hero /></div>
-                <div className="min-h-[150vh]"><About /></div>
-                <div className="min-h-[150vh]"><Works /></div>
-                <div className="min-h-[150vh]"><Services /></div>
-                <div className="min-h-[150vh]"><Footer /></div>
+                {/* Hero: Center */}
+                <div className="h-screen flex items-center justify-center">
+                    <Hero />
+                </div>
+
+                {/* About: Left (Start) */}
+                <div className="min-h-screen flex items-center justify-start">
+                    <About />
+                </div>
+
+                {/* Works: Right (End) */}
+                <div className="min-h-screen flex items-center justify-end">
+                    <Works />
+                </div>
+
+                {/* Services: Left (Start) */}
+                <div className="min-h-screen flex items-center justify-start">
+                    <Services />
+                </div>
+
+                {/* Footer: Center */}
+                <div className="h-screen flex items-center justify-center">
+                    <Footer />
+                </div>
             </main>
         </>
     );

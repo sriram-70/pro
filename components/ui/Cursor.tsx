@@ -15,8 +15,8 @@ export default function Cursor() {
 
     useEffect(() => {
         const moveCursor = (e: MouseEvent) => {
-            cursorX.set(e.clientX - 8); // Center the 16px cursor
-            cursorY.set(e.clientY - 8);
+            cursorX.set(e.clientX - 16); // Center the 32px cursor
+            cursorY.set(e.clientY - 16);
         };
 
         const handleMouseOver = (e: MouseEvent) => {
@@ -39,7 +39,7 @@ export default function Cursor() {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-4 h-4 rounded-full pointer-events-none z-[9999] mix-blend-difference"
+            className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference"
             style={{
                 x: springX,
                 y: springY,
