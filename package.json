@@ -9,13 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^9.117.3",
-    "@react-three/fiber": "^8.17.10",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "gsap": "^3.12.5",
     "lenis": "^1.1.17",
     "next": "^15.1.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "sass": "^1.83.0",
     "three": "^0.170.0",
     "zustand": "^5.0.2"
