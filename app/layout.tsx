@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     keywords: ['portfolio', 'webgl', 'creative developer', 'full stack'],
 };
 
+import Cursor from '@/components/ui/Cursor';
+
 export default function RootLayout({
     children,
 }: {
@@ -16,6 +18,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body>
+                <Cursor />
                 <SmoothScroll>{children}</SmoothScroll>
             </body>
         </html>

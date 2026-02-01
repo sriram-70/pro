@@ -23,12 +23,12 @@ export default function Home() {
             <HUD />
 
             {/* Scrollable HTML Content */}
-            <main className="relative z-10">
-                <Hero />
-                <About />
-                <Works />
-                <Services />
-                <Footer />
+            <main className="relative w-full z-10">
+                <div className="min-h-[150vh]"><Hero /></div>
+                <div className="min-h-[150vh]"><About /></div>
+                <div className="min-h-[150vh]"><Works /></div>
+                <div className="min-h-[150vh]"><Services /></div>
+                <div className="min-h-[150vh]"><Footer /></div>
             </main>
         </>
     );
