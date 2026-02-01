@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --font-inter-tight: 'Inter Tight', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis will handle smooth scrolling */
+}
+
+body {
+  background: linear-gradient(to bottom, #0a0a0a 0%, #1a0a1a 100%);
+  color: #ffffff;
+  font-family: var(--font-inter-tight);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: #ffffff;
+}
+
+/* Glassmorphism utility */
+.glass {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
